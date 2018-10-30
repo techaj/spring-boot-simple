@@ -1,4 +1,6 @@
-FROM openjdk:8
-ADD spring-boot-non-web-example/target/spring-boot-simple-1.0.jar spring-boot-simple-1.0.jar
-EXPOSE 8085
-ENTRYPOINT ["java", "-jar", "spring-boot-simple-1.0.jar"]
+FROM openjdk:8-jdk-alpine
+VOLUME /tmp
+EXPOSE 8080
+ARG JAR_FILE=target/spring-boot-simple-1.0.jar
+ADD target/spring-boot-simple-1.0.jar spring-boot-simple-1.0.jar
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/spring-boot-simple-1.0.jar"]
