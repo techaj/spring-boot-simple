@@ -1,6 +1,7 @@
-FROM openjdk:8-jdk-alpine
+FROM ubuntu:latest
+FROM openjdk:8-jre-alpine
 VOLUME /tmp
 EXPOSE 8080
-ARG JAR_FILE=target/spring-boot-simple-1.0.jar
-ADD target/spring-boot-simple-1.0.jar spring-boot-simple-1.0.jar
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/spring-boot-simple-1.0.jar"]
+ARG target/spring-boot-simple-1.0.jar
+COPY target/spring-boot-simple-1.0.jar /tmp/spring-boot-simple-1.0.jar
+ENTRYPOINT ["java","-jar","/tmp/spring-boot-simple-1.0.jar"]
